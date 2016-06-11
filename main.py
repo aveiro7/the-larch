@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+from user import User
 app = Flask(__name__)
 
 @app.route('/')
@@ -8,7 +9,8 @@ def hello_world():
 
 @app.route('/user/<username>')
 def show_user(username):
-	return "@" + username + "'s posts."
+	user = User(username)
+	return render_template('user.html', user)
 
 @app.route('/hello/')
 @app.route('/hello/<name>')

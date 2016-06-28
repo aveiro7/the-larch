@@ -1,20 +1,26 @@
 {% extends 'layout.html' %}
 {% block body %}
     {% if session.logged_in %}
-    <form action="{{ url_for('edit_post', post_id=post.id) }}" method=post class=add-entry>
-        <dl>
-            <dt><textarea name=text rows=5 cols=40>{{ post.text }}</textarea>
-            <dt><input type="button" onclick="window.location.replace('{{ url_for('show_posts') }}')" value="Cancel" />
-            <input type=submit value=Save>
-        </dl>
-    </form>
-    {% for comment in comments %}
-            <li class=comment><a class="author" href="{{ url_for('show_user', login=comment.author)}}">@{{ comment.author }}</a>: {{comment.text}}
-            {% if comment.author == session.username %}
-                <a href="{{ url_for('edit_comment', comment_id=comment.id) }}"><i class="fa fa-pencil"></i></a>
-                <a href="{{ url_for('delete_comment', comment_id=comment.id) }}"><i class="fa fa-times"></i></a>
-            {% endif %}
-        
-        {% endfor %}
+        {% if post %}
+            <form action="{{ url_for('edit_post', post_id=post.id) }}" method=post class=add-entry>
+                <dl>
+                    <dt><textarea name=text rows=5 cols=40>{{ post.text }}</textarea>
+                    <dt><input type="button" onclick="window.location.replace('{{ url_for('show_posts') }}')" value="Cancel" />
+                    <input type=submit value=Save>
+                </dl>
+            </form>
+            {% for comment in comments %}
+                <li class=comment><a class="author" href="{{ url_for('show_user', login=comment.author)}}">@{{ comment.author }}</a>: {{comment.text}}
+                {% if comment.author == session.username %}
+                    <a href="{{ url_for('edit_comment', comment_id=comment.id) }}"><i class="fa fa-pencil"></i></a>
+                    <a href="{{ url_for('delete_comment', comment_id=comment.id) }}"><i class="fa fa-times"></i></a>
+                {% endif %}
+            
+            {% endfor %}
+        {% else %}
+            <h2>Oops, something went wrong. Double check the address.</h2>
+        {% endif %}
+    {% else %}
+    <h2>Oops, you shouldn't be here! Please, log in or register</h2>
     {% endif %}
 {% endblock %}

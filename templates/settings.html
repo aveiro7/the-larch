@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block body %}
-<h2>Settings</h2>
 {% if session.logged_in %}
+    <h2>Settings</h2>
     <form method=POST action="">
     <ul>
         <li><label>Change password</label></li>
@@ -16,6 +16,8 @@
     </form>
 
     <button onclick="window.location.replace('{{ url_for('delete_user') }}')">Delete account</button>
+{% else %}
+    <h2>Oops, you shouldn't be here. Please log in or register!</h2>
 {% endif %}
 
 {% endblock %}

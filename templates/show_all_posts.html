@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block body %}
+    {% if session.logged_in %}
+    <form action="{{ url_for('add_post') }}" method=post class=add-entry>
+        <dl>
+            <dt><textarea name=text rows=5 cols=40 placeholder="What are you thinking about?"></textarea>
+            <dt><input type=submit value=Share>
+        </dl>
+    </form>
+    {% endif %}
+
+    
+    {% for entry in posts %}
+    <ul class=entries>
+        <li><a class="author" href="{{ url_for('show_user', login=entry.author)}}">@{{ entry.author }}</a>: {{ entry.text|safe }}   
+        {% if entry.author == session.username %}
+            <a href="{{ url_for('show_post', post_id=entry.id) }}"><i class="fa fa-pencil"></i></a>
+            <a href="{{ url_for('delete_post', post_id=entry.id) }}"><i class="fa fa-times"></i></a>
+        {% endif %}
+    </ul>
+        {% for comment in comments %}
+            {% if comment.post_id == entry.id %}
+                <li class=comment><a class="author" href="{{ url_for('show_user', login=comment.author)}}">@{{ comment.author }}</a>: {{comment.text}}
+                {% if comment.author == session.username %}
+                    <a href="{{ url_for('edit_comment', comment_id=comment.id) }}"><i class="fa fa-pencil"></i></a>
+                    <a href="{{ url_for('delete_comment', comment_id=comment.id) }}"><i class="fa fa-times"></i></a>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        <li>
+        <form action="{{ url_for('add_comment', post_id=entry.id) }}" method=post class=comment>
+        <input name=text type="text" placeholder="Comment...">
+        <input type=submit value=Comment>
+        </form>
+
+    {% else %}
+        <li><em>Unbelievable. No entries here so far</em>
+    {% endfor %}
+    
+{% endblock %}

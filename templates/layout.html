@@ -1,0 +1,21 @@
+<!doctype html>
+<title>The Larch</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='font-awesome-4.6.3/css/font-awesome.min.css') }}">
+<div class=page>
+    <h1><a href="{{ url_for('show_posts')}}">The Larch</a></h1>
+    <div class=metanav>
+    {% if not session.logged_in %}
+        <a href="{{ url_for('login') }}">Log in</a> |
+        <a href="{{ url_for('register') }}">Register</a>
+    {% else %}
+        Hello, {{ session.username }} |
+        <a href="{{ url_for('logout') }}">Log out</a> |
+        <a href="{{ url_for('settings') }}">Settings</a>
+    {% endif %}
+    </div>
+    {% for message in get_flashed_messages() %}
+        <div class=flash>{{ message }}</div>
+    {% endfor %}
+    {% block body %}{% endblock %}
+</div>

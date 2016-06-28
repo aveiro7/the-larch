@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block body %}
+<h2>Settings</h2>
+{% if session.logged_in %}
+    <form method=POST action="">
+    <ul>
+        <li><label>Change password</label></li>
+        <li>
+            <label>New password:</label>
+            <input type=password name="new_password"></li>
+        <li>
+            <label>Repeat the password:</label>
+            <input type=password name="new_password_check"></li>
+        <li><input type=submit name="Save"></li>
+    </ul>
+    </form>
+
+    <button onclick="window.location.replace('{{ url_for('delete_user') }}')">Delete account</button>
+{% endif %}
+
+{% endblock %}

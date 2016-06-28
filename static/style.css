@@ -1,10 +1,11 @@
 body { 
     font-family: sans-serif; 
     background: #eee; 
+    color: #3C3530;
 }
 
 a, h1, h2 { 
-    color: #1f5c55;
+    color: #AACD6E;
     text-decoration: none;
 }
 
@@ -13,13 +14,13 @@ h1, h2 {
     margin: 0; 
 }
 
-h1 { border-bottom: 2px solid #eee; }
+h1 { border-bottom: 2px solid #AACD6E; }
 h2 { font-size: 1.2em; }
 
 .page {
     margin: 2em auto; 
     width: 35em; 
-    border: 5px solid #ccc; 
+    border: 5px solid #F16B6F; 
     padding: 0.8em;
     background: white;
 }
@@ -30,7 +31,7 @@ h2 { font-size: 1.2em; }
 }
 
 .entries li { 
-    margin-left: 0.2em; 
+    margin-left: 40px; 
     margin-top: 20px;
 }
 
@@ -50,13 +51,13 @@ h2 { font-size: 1.2em; }
 }
 
 .flash { 
-    background: #cee5F5; 
+    background: #d5ecae; 
     padding: 0.5em;
-    border: 1px solid #aacbe2; 
+    border: 1px solid #AACD6E; 
 }
 
 .error { 
-    background: #f0d6d6; 
+    background: #d5ecae; 
     padding: 0.5em; 
 }
 
@@ -65,12 +66,12 @@ h2 { font-size: 1.2em; }
     padding-top: 2px;
     text-decoration: none;
     font-weight: bold;
-    color: #1f5c55;
+    /*color: #F16B6F;*/
 
 }
 
 .comment {
-    margin-left: 2em;
+    margin-left: 60px;
     font-size: 0.8em;
 }
 
@@ -79,9 +80,14 @@ li {
 }
 
 i {
-    color: lightgrey;
+    color: #C5C6B6;
 }
 
 i:hover {
-    color : grey;
+    color : #3C3530;
+}
+
+.status {
+    height: 50px;
+    font-size: 13pt;
 }
